@@ -1,0 +1,74 @@
+spring:
+  application:
+    name: ${info.name}
+  profiles:
+    active: default
+  config:
+    import:
+      # ！！！ 注意：Nacos的配置必须在此次被导入，不能放在多环境配置中导入。原因如下：
+      # Nacos 配置客户端初始化早于 import 的执行时机，如果将Nacos导入放在特定环境中import，将无法正确获取Nacos配置。
+      - classpath:config/application-nacos.yaml
+
+# 多环境配置
+---
+spring:
+  config:
+    import:
+      - classpath:config/application-common.yaml
+      - classpath:config/application-route.yaml
+#      - classpath:config/application-feign.yaml
+#      - classpath:config/application-datasource.yaml
+    activate:
+      on-profile: default
+
+---
+spring:
+  config:
+    import:
+      - classpath:config/application-common.yaml
+      - classpath:config/application-route.yaml
+#      - classpath:config/application-feign.yaml
+      - nacos:application-common.yaml?group=gateway
+#      - nacos:application-datasource.yaml?group=gateway
+      - nacos:application-dev-none.yaml?group=gateway
+    activate:
+      on-profile: dev
+
+---
+spring:
+  config:
+    import:
+      - classpath:config/application-common.yaml
+      - classpath:config/application-route.yaml
+#      - classpath:config/application-feign.yaml
+      - nacos:application-common.yaml?group=gateway
+#      - nacos:application-datasource.yaml?group=gateway
+      - nacos:application-test-none.yaml?group=gateway
+    activate:
+      on-profile: test
+
+---
+spring:
+  config:
+    import:
+      - classpath:config/application-common.yaml
+      - classpath:config/application-route.yaml
+#      - classpath:config/application-feign.yaml
+      - nacos:application-common.yaml?group=gateway
+#      - nacos:application-datasource.yaml?group=gateway
+      - nacos:application-uat-none.yaml?group=gateway
+    activate:
+      on-profile: uat
+
+---
+spring:
+  config:
+    import:
+      - classpath:config/application-common.yaml
+      - classpath:config/application-route.yaml
+#      - classpath:config/application-feign.yaml
+      - nacos:application-common.yaml?group=gateway
+#      - nacos:application-datasource.yaml?group=gateway
+      - nacos:application-prod-none.yaml?group=gateway
+    activate:
+      on-profile: prod

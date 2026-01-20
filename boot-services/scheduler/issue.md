@@ -1,0 +1,4 @@
+- 实体注册：作为一个实体注册到scheduler，registry
+- 任务提交
+  - job_name: ${task_name}_job
+  - trigger_name: ${task_name}_trigger

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>site.elven.group</groupId>
+        <artifactId>boot-services</artifactId>
+        <version>0.0.1</version>
+    </parent>
+
+    <artifactId>planning-api</artifactId>
+
+    <!--<dependencies>
+        &lt;!&ndash; openfeign &ndash;&gt;
+&lt;!&ndash;        <dependency>&ndash;&gt;
+&lt;!&ndash;            <groupId>org.springframework.cloud</groupId>&ndash;&gt;
+&lt;!&ndash;            <artifactId>spring-cloud-starter-openfeign</artifactId>&ndash;&gt;
+&lt;!&ndash;        </dependency>&ndash;&gt;
+&lt;!&ndash;        &lt;!&ndash; jackson-annotations &ndash;&gt;&ndash;&gt;
+&lt;!&ndash;        <dependency>&ndash;&gt;
+&lt;!&ndash;            <groupId>com.fasterxml.jackson.core</groupId>&ndash;&gt;
+&lt;!&ndash;            <artifactId>jackson-annotations</artifactId>&ndash;&gt;
+&lt;!&ndash;        </dependency>&ndash;&gt;
+&lt;!&ndash;        &lt;!&ndash; jackson-databind &ndash;&gt;&ndash;&gt;
+&lt;!&ndash;        <dependency>&ndash;&gt;
+&lt;!&ndash;            <groupId>com.fasterxml.jackson.core</groupId>&ndash;&gt;
+&lt;!&ndash;            <artifactId>jackson-databind</artifactId>&ndash;&gt;
+&lt;!&ndash;        </dependency>&ndash;&gt;
+    </dependencies>-->
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

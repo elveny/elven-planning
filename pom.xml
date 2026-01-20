@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--<parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.5</version>
+    </parent>-->
+
+    <groupId>site.elven.group</groupId>
+    <artifactId>elven-planning</artifactId>
+    <version>0.0.1</version>
+
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>common</module>
+        <module>boot-services</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
+
+        <reversion>0.0.1</reversion>
+
+        <elven-common.version>0.0.2</elven-common.version>
+        <elven-recording.version>0.0.3</elven-recording.version>
+
+        <spring-boot.version>3.3.5</spring-boot.version>
+        <spring-cloud.version>2023.0.3</spring-cloud.version>
+        <spring-cloud-alibaba.version>2023.0.3.4</spring-cloud-alibaba.version>
+        <spring-framework.version>6.1.14</spring-framework.version>
+        <!-- ai-delete -->
+<!--        <spring-ai.version>1.0.2</spring-ai.version>-->
+<!--        <spring-ai-starter-model-chat-memory-jdbc.version>1.0.0-M8</spring-ai-starter-model-chat-memory-jdbc.version>-->
+        <spring-security.version>6.3.4</spring-security.version>
+        <lombok.version>1.18.34</lombok.version>
+        <hutool.version>5.8.32</hutool.version>
+        <gson.version>2.11.0</gson.version>
+        <mysql.version>8.3.0</mysql.version>
+        <hibernate.version>6.5.3.Final</hibernate.version>
+        <jjwt.version>0.12.6</jjwt.version>
+        <mapstruct.version>1.6.3</mapstruct.version>
+        <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+        <h2database.version>2.3.232</h2database.version>
+
+        <langchain.version>1.0.0-beta1</langchain.version>
+        <testcontainers.version>1.20.5</testcontainers.version>
+
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <name>Central Portal Snapshots</name>
+            <id>central-portal-snapshots</id>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <dependencyManagement>
+
+        <dependencies>
+
+            <!-- spring-boot-dependencies -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- spring-cloud-dependencies -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- spring-cloud-alibaba-dependencies -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- ai-delete spring ai -->
+            <!--<dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-bom</artifactId>
+                <version>${spring-ai.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>-->
+
+            <!-- ai-delete langchain4j-bom -->
+            <!--<dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-bom</artifactId>
+                <version>${langchain.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>-->
+
+            <!-- elven-common 公共工具 -->
+            <dependency>
+                <groupId>site.elven.parent</groupId>
+                <artifactId>elven-common</artifactId>
+                <version>${elven-common.version}</version>
+            </dependency>
+
+            <!-- elven-recording 公共工具 -->
+            <dependency>
+                <groupId>site.elven.parent</groupId>
+                <artifactId>elven-recording</artifactId>
+                <version>${elven-recording.version}</version>
+            </dependency>
+
+            <!-- common: 公共项目 -->
+            <dependency>
+                <groupId>site.elven.group</groupId>
+                <artifactId>planning-common</artifactId>
+                <version>${reversion}</version>
+            </dependency>
+
+            <!-- boot-base: boot的基础项目 -->
+            <dependency>
+                <groupId>site.elven.group</groupId>
+                <artifactId>boot-base</artifactId>
+                <version>${reversion}</version>
+            </dependency>
+
+            <!-- api包： 封装的api接口 -->
+            <dependency>
+                <groupId>site.elven.group</groupId>
+                <artifactId>planning-api</artifactId>
+                <version>${reversion}</version>
+            </dependency>
+
+
+            <!-- Spring Data & Spring Security 配置： Spring Security 提供的 Spring Data 集成允许在你的查询中引用当前用户。在查询中包含用户，以支持分页结果，这不仅是有用的，而且是必要的，因为事后过滤结果将无法扩展。 -->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.security</groupId>-->
+<!--                <artifactId>spring-security-data</artifactId>-->
+<!--                <version>${spring-security.version}</version>-->
+<!--            </dependency>-->
+
+            <!-- 常用 tool -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <!-- jjwt-api -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+
+            <!-- jjwt-impl -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+
+            <!-- jjwt-gson -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-gson</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+
+            <!-- mapstruct -->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <!-- mapstruct-processor -->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok-mapstruct-binding</artifactId>
+                <version>${lombok-mapstruct-binding.version}</version>
+            </dependency>
+
+            <!-- h2database/h2 -->
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${h2database.version}</version>
+            </dependency>
+
+            <!-- testcontainers -->
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>testcontainers</artifactId>
+                <version>${testcontainers.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven-jar-plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>

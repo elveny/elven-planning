@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test1</title>
+</head>
+<body>
+    <input type="text" id="userCode" placeholder="Enter user code"><br/>
+    <input type="text" id="token" placeholder="Enter token"> <br/>
+    <input type="text" id="messageInput" placeholder="Enter message"><br/>
+    <button onclick="connect()">Connect</button>
+    <button onclick="sendMessage()">Send</button>
+    <div id="messages"></div>
+
+    <script>
+        let socket;
+        let userCode;
+        let token;
+
+        function connect() {
+            userCode = document.getElementById('userCode').value;
+            token = document.getElementById('token').value;
+            if (!userCode) {
+                alert('Please enter a user ID');
+                return;
+            }
+<!--            var token = "Bearer " + localStorage.getItem("token");-->
+<!--            var token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZW1vMSIsImNyZWF0ZWQiOiJEZWMgNiwgMjAyNCwgMjoxNzoyMCBQTSIsImlhdCI6MTczMzQ2NTg0MCwiZXhwIjoxNzMzNDY5NDQwfQ.UXKeMniPF3XXnF-SOnPBtc_AMsdvsJj1ggYk4VTS368";-->
+<!--            var token = "11111";-->
+<!--            socket = new WebSocket(`ws://localhost:8800/elven-planning/ws/test-count/${userCode}`, [token]);-->
+            socket = new WebSocket("ws://localhost:8800/elven-planning/ws/test-count/"+userCode, [token]);
+<!--            socket = new WebSocket("ws://localhost:8800/elven-planning/ws/test-count/"+userCode);-->
+
+            socket.onopen = function() {
+                console.log('Connected to server');
+            };
+
+            socket.onmessage = function(event) {
+                const messages = document.getElementById('messages');
+                const message = document.createElement('div');
+                message.textContent = event.data;
+                messages.appendChild(message);
+            };
+
+            socket.onclose = function() {
+                console.log('Connection closed');
+            };
+
+            socket.onerror = function(error) {
+                console.error('WebSocket error:', error);
+            };
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value;
+            if (socket && socket.readyState === WebSocket.OPEN) {
+                socket.send(message);
+                input.value = '';
+            } else {
+                alert('WebSocket is not connected');
+            }
+        }
+    </script>
+</body>
+</html>

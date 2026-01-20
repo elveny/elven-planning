@@ -1,0 +1,136 @@
+# 构建工具输出
+## Maven
+target/
+**/target/
+**/pom.xml.tag
+**/pom.xml.releaseBackup
+**/pom.xml.versionsBackup
+**/pom.xml.next
+**/release.properties
+**/dependency-reduced-pom.xml
+**/build.log
+**/maven-ant-tasks*.jar
+
+## Gradle
+.gradle/
+**/build/
+**/.gradle
+**/gradle-app.setting
+**/!gradle/wrapper/gradle-wrapper.jar
+
+# 依赖 (JAR文件通常不提交)
+lib/
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# 日志文件
+*.log
+logs/
+**/logs/
+**/*.log.*
+**/log/
+**/*.log
+
+# 操作系统和IDE生成文件
+## macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+## Windows
+Thumbs.db
+Desktop.ini
+
+## IDE
+### IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+### Eclipse
+.settings/
+.classpath
+.project
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+
+### NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### VS Code
+.vscode/
+*.code-workspace
+
+# 编译输出
+*.class
+*.dex
+*.exe
+
+# 打包文件
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# 单元测试和代码覆盖率报告
+**/test-output/
+**/coverage/
+**/.scannerwork/
+**/jacoco.exec
+*.jfr
+
+# 敏感信息文件 (包含密码、密钥等)
+*.properties
+*.keystore
+*.jks
+*.p12
+*.pfx
+*.pem
+*.crt
+*.key
+*.pub
+**/config/application-*.yml
+**/config/application-*.yaml
+**/config/application-*.properties
+
+# 临时文件
+*.tmp
+*.temp
+*.cache
+tmp/
+temp/
+
+# 系统文件
+*.swp
+*.swo
+*~
+
+# 自定义
+uploads/
+tomcat-work/

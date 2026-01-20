@@ -1,0 +1,50 @@
+- 代码整理：学习优秀项目
+- ✅ i18n
+    - ✅ messages化报错信息
+    - ✅ messages文件拆分
+- ✅ @ControllerAdvice配置
+    - ✅ ConstraintViolationException与messages整合（仅提示哪些字段有错误，无法提示具体错误信息）
+    - ✅ 多个 @ControllerAdvice 需要指定 @Order，否则无法走到正确的 @ExceptionHandler
+- ⚠️ gson:
+    - ⚠️ gson 配置（是否替换默认的jackson解析器：暂不替换）
+    - ✅ gson util 封装
+    - ✅ gson util 放在 common 中
+- version/timestamp更新策略
+- deleted逻辑删除
+- hikari连接池配置
+- ✅ 权限认证
+    - ✅ 例外 /test/*
+    - 刷新策略：通过注解
+- ✅ redis 配置
+    - ✅ LRU缓存实现：通过注解。已经被@EnableCaching实现了：@Cacheable @CachePut @CacheEvict
+    - ✅ redis缓存 user、user Holder
+- ✅ DefaultErrorController 改造成 自定义的 @ExceptionHandler
+- ❌ token 过期时区不对（暂无需处理）
+- Lock实现：通过注解
+- ✅ 错误日志单独输出：
+    - logback-spring.xml和application.yaml中是互补关系
+    - logback-spring.xml配置优先
+    - logback-spring.xml可以引用application.yaml中的配置，比如{logging.file.path}
+    - logback-spring.xml高级配置，比如单独error日志等
+    - logback-spring.xml中的配置，是否可以通过/manage修改日志级别？
+- jpa配置
+- hibernate配置：缓存、二级缓存
+- ⚠️ restful插件（无需使用）
+- ✅ server.tomcat.base-dir配置
+-  websocket
+- ✅ 配置
+- token验证：前端报错
+- ✅ 异常处理：Caused by: java.lang.IllegalStateException: Failed to extract parameter names for public java.lang.String site.elven.planning.user.endpoint.TestEndpoint.get(java.lang.String)
+    -  ✅ 解决方案：maven-compiler-plugin 配置 `<parameters>true</parameters>`
+- ✅ 公共迁移到boot-base
+- ✅ 实现 HTTP Job
+- ✅ 多module repository扫描
+  - ✅ Application入口增加组件扫描 @ComponentScan(basePackages = {"site.elven.planning.boot.base", "site.elven.planning.scheduler"})
+  - ✅ 显式配置@EnableJpaRepositories： @EnableJpaRepositories(basePackages = {"site.elven.planning.scheduler.web.dal"})
+  - ✅ 显式配置@EntityScan： (basePackages = {"site.elven.planning.scheduler.web.model.entity"})
+  - ✅ BaseRepository配置 @NoRepositoryBean
+- 向量数据库安装测试
+- 手动配置AiService的model、tools等
+- chat memory 配置 保存到数据库
+- rag 配置：embedded vector db
+- tika：文档解析库

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<included>
+    <springProperty scope="context" name="infoName" source="info.name" defaultValue="elven-planning"/>
+    <springProperty scope="context" name="logFilePath" source="logging.file.path" defaultValue="./log/${infoName}"/>
+
+    <property name="LOG_FILE_PATH" value="${logFilePath}" />
+    <property name="LOG_FILE_NAME" value="${infoName}" />
+    <property name="LOG_FILE_ERROR_NAME" value="${LOG_FILE_NAME}.error" />
+
+    <!-- 错误日志文件输出 -->
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+            <charset>${FILE_LOG_CHARSET}</charset>
+        </encoder>
+        <file>${LOG_FILE_PATH}/${LOG_FILE_ERROR_NAME}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_FILE_PATH}/${LOG_FILE_ERROR_NAME}.%d{yyyy-MM-dd}.%i.gz</fileNamePattern>
+            <cleanHistoryOnStart>${LOGBACK_ROLLINGPOLICY_CLEAN_HISTORY_ON_START:-false}</cleanHistoryOnStart>
+            <maxFileSize>${LOGBACK_ROLLINGPOLICY_MAX_FILE_SIZE:-10MB}</maxFileSize>
+            <totalSizeCap>${LOGBACK_ROLLINGPOLICY_TOTAL_SIZE_CAP:-0}</totalSizeCap>
+            <maxHistory>${LOGBACK_ROLLINGPOLICY_MAX_HISTORY:-7}</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+</included>
