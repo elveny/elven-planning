@@ -106,7 +106,7 @@ nbdist/
 *.jfr
 
 # 敏感信息文件 (包含密码、密钥等)
-*.properties
+#*.properties
 *.keystore
 *.jks
 *.p12
@@ -115,9 +115,9 @@ nbdist/
 *.crt
 *.key
 *.pub
-**/config/application-*.yml
-**/config/application-*.yaml
-**/config/application-*.properties
+#**/config/application-*.yml
+#**/config/application-*.yaml
+#**/config/application-*.properties
 
 # 临时文件
 *.tmp

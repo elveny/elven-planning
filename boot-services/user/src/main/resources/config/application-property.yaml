@@ -1,0 +1,26 @@
+application:
+  config:
+    token:
+      secret: 122333444455555666666777777788888888999999999
+      expire: 3600000
+      header: Authorization
+      token-prefix: 'Bearer '
+    security:
+      white-list:
+        - /error
+        - /web/v1/user/register
+        - /web/v1/user/login
+        - /web/v1/test/**
+        - /ws/**
+      manage-list:
+        - /manage/**
+        - /admin/**
+    thread:
+      pool:
+        core-size: 10
+        max-size: 20
+        queue-capacity: 1000
+        keep-alive-seconds: 300
+    redis:
+      cache-prefix: planning
+      cache-ttl-days: 1

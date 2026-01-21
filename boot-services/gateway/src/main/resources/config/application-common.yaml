@@ -1,0 +1,84 @@
+info:
+  name: planning-gateway
+  version: 0.0.1
+  formatted-version: (v0.0.1)
+  description: Elven Planning Gateway
+
+spring:
+  main:
+    banner-mode: console
+    lazy-initialization: true
+    allow-circular-references: true
+#  aop:
+#    proxy-target-class: true
+#    auto: true
+  banner:
+    charset: UTF-8
+    location: banners/banner1.txt
+  jpa:
+    open-in-view: false
+    show-sql: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: always
+  mvc:
+    format:
+      date-time: yyyy-MM-dd HH:mm:ss
+      date: dd/MM/yyyy
+  messages:
+    basename: i18n/exception/gateway-messages
+    encoding: UTF-8
+    cache-duration: 3600
+    # 是否运行回退到系统时区
+    fallback-to-system-locale: false
+  cloud:
+    nacos:
+      config:
+        import-check:
+          enabled: false
+      discovery:
+        register-enabled: false
+
+server:
+#  servlet:
+#    context-path: /${info.name}
+#    session:
+#      timeout: 1800s
+  port: 800
+#  tomcat:
+#    base-dir: tomcat-work
+#    max-threads: 200
+#  error:
+#    include-stacktrace: always
+#    include-message: always
+
+management:
+  endpoint:
+    metrics:
+      enabled: true
+    health:
+      show:
+        details: always
+  endpoints:
+    web:
+      base-path: /manage
+      exposure:
+        include: '*'
+
+logging:
+  config: classpath:logging/logback-spring.xml
+  group:
+    project: site.elven.planning.gateway
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG
+    project: DEBUG
+  file:
+    path: ./logs/${info.name}
+    name: ./logs/${info.name}/${info.name}.log
+    max-history: 1
+    total-size-cap: 16MB
+    max-size: 1MB

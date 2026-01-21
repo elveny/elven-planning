@@ -1,0 +1,7 @@
+elven:
+  recording:
+    enabled: true
+    level: INFO
+    pointcuts:
+      - "@within(org.springframework.web.bind.annotation.RestController)"
+      - "execution(* site.elven.planning.plan.web.service.task.impl.TaskInfoServiceImpl.list(..))"

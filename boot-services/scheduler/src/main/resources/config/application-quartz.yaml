@@ -1,0 +1,19 @@
+  quartz:
+    job-store-type: jdbc
+    initialize-schema: always
+    properties:
+      org:
+        quartz:
+          job-store:
+            driver-delegate-class: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+#            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+#            dataSource: myDS
+#            tablePrefix: QRTZ_
+#            useProperties: false
+#          scheduler:
+#            instanceName: SpringBootQuartzScheduler
+#          threadPool:
+#            class: org.quartz.simpl.SimpleThreadPool
+#            threadCount: 10
+#            threadPriority: 5
+#            threadsInheritContextClassLoaderOfInitializingThread: true

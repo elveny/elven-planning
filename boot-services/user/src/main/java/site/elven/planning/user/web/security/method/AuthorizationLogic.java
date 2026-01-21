@@ -3,6 +3,7 @@ package site.elven.planning.user.web.security.method;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionOperations;
 import org.springframework.stereotype.Component;
 import site.elven.planning.api.common.enums.user.UserType;
+import site.elven.planning.api.web.model.user.response.UserRsp;
 import site.elven.planning.user.web.holder.UserContextHolder;
 import site.elven.planning.user.web.model.entity.user.User;
 
@@ -25,7 +26,7 @@ public class AuthorizationLogic {
         }
 
         Object returnObject = operations.getReturnObject();
-        if (returnObject instanceof User user){
+        if (returnObject instanceof UserRsp user){
             return user.getCode().equals(currentUser.getCode());
         }
 
