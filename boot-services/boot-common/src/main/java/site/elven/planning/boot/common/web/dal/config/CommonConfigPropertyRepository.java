@@ -1,8 +1,8 @@
-package site.elven.planning.boot.base.web.dal.config;
+package site.elven.planning.boot.common.web.dal.config;
 
 import org.springframework.stereotype.Repository;
 import site.elven.planning.boot.base.web.dal.property.BasePropertyRepository;
-import site.elven.planning.boot.base.web.model.entity.config.CommonConfigProperty;
+import site.elven.planning.boot.common.web.model.entity.config.CommonConfigProperty;
 
 @Repository
 public interface CommonConfigPropertyRepository extends BasePropertyRepository<CommonConfigProperty, Long> {

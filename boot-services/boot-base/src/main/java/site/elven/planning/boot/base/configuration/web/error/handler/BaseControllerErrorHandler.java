@@ -6,7 +6,7 @@ import site.elven.planning.boot.base.manager.message.MessageManager;
 
 import java.util.Map;
 
-public class BaseControllerErrorHandler {
+public class BaseControllerErrorHandler implements ControllerErrorHandler {
     @Autowired
     private MessageManager messageManager;
 

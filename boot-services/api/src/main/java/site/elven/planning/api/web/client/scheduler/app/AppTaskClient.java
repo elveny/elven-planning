@@ -2,7 +2,6 @@ package site.elven.planning.api.web.client.scheduler.app;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
-import site.elven.planning.api.web.client.scheduler.app.fallback.AppTaskClientFallback;
 import site.elven.planning.api.web.client.scheduler.app.fallback.AppTaskClientFallbackFactory;
 import site.elven.planning.api.web.model.base.response.base.BaseResultRsp;
 import site.elven.planning.api.web.model.scheduler.request.app.AppAddTaskReq;
@@ -11,7 +10,6 @@ import site.elven.planning.api.web.model.scheduler.response.app.AppTaskRsp;
 import java.util.List;
 
 @FeignClient(name = "planning-scheduler", path = "/planning-scheduler/web/v1/app/task",
-//        fallback = AppTaskClientFallback.class
         fallbackFactory = AppTaskClientFallbackFactory.class
 )
 public interface AppTaskClient {

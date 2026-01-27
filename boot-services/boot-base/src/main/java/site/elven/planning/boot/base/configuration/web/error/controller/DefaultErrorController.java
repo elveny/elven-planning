@@ -81,7 +81,7 @@ public class DefaultErrorController implements ErrorController {
     }
 
     private boolean extractDebugFromRequest(HttpServletRequest request) {
-        // 从请求头中提取 token
+        // 从请求头中提取 Request-Debug
         String debug = request.getHeader("Request-Debug");
         if(debug != null){
             return Boolean.parseBoolean(debug);

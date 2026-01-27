@@ -16,6 +16,7 @@
     <modules>
         <module>api</module>
         <module>boot-base</module>
+        <module>boot-common</module>
         <module>user</module>
         <module>scheduler</module>
         <module>plan</module>

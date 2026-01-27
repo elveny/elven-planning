@@ -1,4 +1,4 @@
-package site.elven.planning.boot.base.web.model.entity.config;
+package site.elven.planning.boot.common.web.model.entity.config;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

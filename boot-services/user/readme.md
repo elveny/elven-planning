@@ -8,3 +8,7 @@ curl --location 'http://localhost:8800/elven-planning/manage/loggers/org.springf
 }'
 ```
 
+- 【Nacos 配置中心】
+```
+http://localhost:8800/planning-user/web/v1/test/config
+```

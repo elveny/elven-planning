@@ -1,4 +1,4 @@
-package site.elven.planning.boot.base.web.service.config.impl;
+package site.elven.planning.boot.common.web.service.config.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,14 +7,14 @@ import site.elven.planning.api.common.enums.base.CommonConfigPropertyType;
 import site.elven.planning.api.web.model.base.request.config.CommonConfigInfoReq;
 import site.elven.planning.api.web.model.base.response.config.CommonConfigDetailRsp;
 import site.elven.planning.boot.base.common.constant.CommonConstants;
-import site.elven.planning.boot.base.web.dal.config.CommonConfigInfoRepository;
-import site.elven.planning.boot.base.web.mapstruct.config.CommonConfigInfoMapStruct;
-import site.elven.planning.boot.base.web.mapstruct.config.CommonConfigPropertyMapStruct;
-import site.elven.planning.boot.base.web.model.entity.config.CommonConfigInfo;
-import site.elven.planning.boot.base.web.model.entity.config.CommonConfigProperty;
 import site.elven.planning.boot.base.web.service.base.impl.ServiceImpl;
-import site.elven.planning.boot.base.web.service.config.CommonConfigInfoService;
-import site.elven.planning.boot.base.web.service.config.CommonConfigPropertyService;
+import site.elven.planning.boot.common.web.dal.config.CommonConfigInfoRepository;
+import site.elven.planning.boot.common.web.mapstruct.config.CommonConfigInfoMapStruct;
+import site.elven.planning.boot.common.web.mapstruct.config.CommonConfigPropertyMapStruct;
+import site.elven.planning.boot.common.web.model.entity.config.CommonConfigInfo;
+import site.elven.planning.boot.common.web.model.entity.config.CommonConfigProperty;
+import site.elven.planning.boot.common.web.service.config.CommonConfigInfoService;
+import site.elven.planning.boot.common.web.service.config.CommonConfigPropertyService;
 
 import java.util.List;
 

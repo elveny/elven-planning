@@ -11,24 +11,6 @@
 
     <artifactId>planning-api</artifactId>
 
-    <!--<dependencies>
-        &lt;!&ndash; openfeign &ndash;&gt;
-&lt;!&ndash;        <dependency>&ndash;&gt;
-&lt;!&ndash;            <groupId>org.springframework.cloud</groupId>&ndash;&gt;
-&lt;!&ndash;            <artifactId>spring-cloud-starter-openfeign</artifactId>&ndash;&gt;
-&lt;!&ndash;        </dependency>&ndash;&gt;
-&lt;!&ndash;        &lt;!&ndash; jackson-annotations &ndash;&gt;&ndash;&gt;
-&lt;!&ndash;        <dependency>&ndash;&gt;
-&lt;!&ndash;            <groupId>com.fasterxml.jackson.core</groupId>&ndash;&gt;
-&lt;!&ndash;            <artifactId>jackson-annotations</artifactId>&ndash;&gt;
-&lt;!&ndash;        </dependency>&ndash;&gt;
-&lt;!&ndash;        &lt;!&ndash; jackson-databind &ndash;&gt;&ndash;&gt;
-&lt;!&ndash;        <dependency>&ndash;&gt;
-&lt;!&ndash;            <groupId>com.fasterxml.jackson.core</groupId>&ndash;&gt;
-&lt;!&ndash;            <artifactId>jackson-databind</artifactId>&ndash;&gt;
-&lt;!&ndash;        </dependency>&ndash;&gt;
-    </dependencies>-->
-
     <build>
         <plugins>
             <plugin>

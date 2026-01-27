@@ -5,7 +5,6 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Filter;
 import site.elven.planning.boot.base.web.model.entity.property.BasePropertyEntity;
 
 @Entity

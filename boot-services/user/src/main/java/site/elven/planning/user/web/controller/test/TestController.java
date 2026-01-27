@@ -8,6 +8,7 @@ import site.elven.planning.boot.base.common.annotation.IgnoreResponseBodyAdvice;
 import site.elven.planning.boot.base.common.exception.DefaultException;
 import site.elven.planning.user.configuration.web.config.ApplicationConfig;
 import site.elven.planning.user.web.model.entity.user.User;
+import site.elven.planning.user.web.service.test.TestService;
 
 @RestController
 @RequestMapping("/web/v1/test")
@@ -16,6 +17,9 @@ public class TestController {
 
     @Autowired
     private ApplicationConfig applicationConfig;
+
+    @Autowired
+    private TestService testService;
 
     @RequestMapping(value = "/hello", produces = "application/json")
     public String hello() {
@@ -30,6 +34,16 @@ public class TestController {
     @RequestMapping("/ex")
     public String exception() throws Exception {
         throw new Exception("test exception");
+    }
+
+    @RequestMapping("/test1")
+    public String test1() {
+        return testService.test1();
+    }
+
+    @RequestMapping("/test2")
+    public String test2() {
+        return testService.test2();
     }
 
     @RequestMapping("/user")

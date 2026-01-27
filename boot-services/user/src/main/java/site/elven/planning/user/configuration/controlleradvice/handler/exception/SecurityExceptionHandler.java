@@ -1,5 +1,6 @@
 package site.elven.planning.user.configuration.controlleradvice.handler.exception;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +36,18 @@ public class SecurityExceptionHandler extends BaseExceptionHandler {
         log.error("", ex);
 
         ExceptionCode exceptionCode = ExceptionCode.UNAUTHORIZED;
+        DefaultResponse<?> failure = DefaultResponse.failure(
+                exceptionCode.getCode(),
+                messageManager.getMessage(exceptionCode.getMessageCode(), ex.getMessage()),
+                null);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).headers(headers()).body(failure);
+    }
+
+    @ExceptionHandler(value = {ExpiredJwtException.class})
+    public ResponseEntity<DefaultResponse<?>> handleExpiredJwtException(ExpiredJwtException ex) {
+        log.error("", ex);
+
+        ExceptionCode exceptionCode = ExceptionCode.TOKEN_EXPIRED;
         DefaultResponse<?> failure = DefaultResponse.failure(
                 exceptionCode.getCode(),
                 messageManager.getMessage(exceptionCode.getMessageCode(), ex.getMessage()),

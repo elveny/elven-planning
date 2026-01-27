@@ -22,11 +22,6 @@ public class FeignConfig {
         return new ApiResponseEntityDecoder(objectMapper);
     }
 
-//    @Bean
-//    public Feign.Builder decodeVoidFeignBuilder() {
-//        return Feign.builder().decodeVoid();
-//    }
-
     @Bean
     public FeignErrorDecoder feignErrorDecoder() {
         return new FeignErrorDecoder();
