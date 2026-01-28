@@ -5,7 +5,7 @@ spring:
     active: default
   config:
     import:
-      # ！！！ 注意：Nacos的配置必须在此次被导入，不能放在多环境配置中导入。原因如下：
+      # ！！！ 注意：Nacos的配置必须在此处被导入，不能放在多环境配置中导入。原因如下：
       # Nacos 配置客户端初始化早于 import 的执行时机，如果将Nacos导入放在特定环境中import，将无法正确获取Nacos配置。
       - classpath:config/application-nacos.yaml
 

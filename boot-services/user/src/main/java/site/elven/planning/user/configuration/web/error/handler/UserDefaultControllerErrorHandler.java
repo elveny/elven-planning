@@ -29,6 +29,4 @@ public class UserDefaultControllerErrorHandler extends BaseControllerErrorHandle
         return buildResponse(ExceptionCode.USER_ONLINE_NOT_EXISTS.getCode(), ExceptionCode.USER_ONLINE_NOT_EXISTS.getMessageCode(), errorMessage);
     }
 
-
-
 }
