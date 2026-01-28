@@ -1,4 +1,4 @@
-package site.elven.planning.user.configuration.web.validation;
+package site.elven.planning.boot.base.configuration.web.validation;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;

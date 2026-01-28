@@ -1,6 +1,7 @@
 package site.elven.planning.user.web.controller.user;
 
 import jakarta.validation.Valid;
+import jakarta.validation.groups.Default;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PostAuthorize;
@@ -34,7 +35,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("login")
-    public LoginRsp login(@Validated(LoginReq.LoginGroup.class) @RequestBody LoginReq loginReq){
+    public LoginRsp login(@Validated({LoginReq.LoginGroup.class, Default.class}) @RequestBody LoginReq loginReq){
         return loginService.login(loginReq);
     }
 
