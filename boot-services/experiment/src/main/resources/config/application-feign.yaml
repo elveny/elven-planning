@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            logger-level: full
+            connect-timeout: 5000
+            read-timeout: 5000
+            follow-redirects: true
+            decode-404: true
+
+feign:
+  sentinel:
+    enabled: true

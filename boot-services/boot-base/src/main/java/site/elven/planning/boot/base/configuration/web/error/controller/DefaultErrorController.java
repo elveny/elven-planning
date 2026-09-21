@@ -7,6 +7,7 @@ import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import site.elven.planning.boot.base.common.exception.ExceptionCode;
 import site.elven.planning.boot.base.common.response.DefaultResponse;
@@ -14,6 +15,7 @@ import site.elven.planning.boot.base.configuration.web.error.handler.adapter.Con
 import site.elven.planning.boot.base.manager.message.MessageManager;
 
 import java.util.Map;
+import java.util.Objects;
 
 @RestController
 public class DefaultErrorController implements ErrorController {
@@ -61,6 +63,10 @@ public class DefaultErrorController implements ErrorController {
                     messageManager.getMessage(exceptionCode.getMessageCode(), message),
                     null
             );
+        }
+        else{
+            // 设置状态码为 200
+            Objects.requireNonNull(((ServletWebRequest) webRequest).getResponse()).setStatus(HttpStatus.OK.value());
         }
 
         // 如果是 debug 模式，则返回详细的异常信息

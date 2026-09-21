@@ -20,7 +20,7 @@
         <module>user</module>
         <module>scheduler</module>
         <module>plan</module>
-        <module>gateway</module>
+        <module>experiment</module>
     </modules>
 
     <dependencies>

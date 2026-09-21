@@ -27,7 +27,7 @@ spring:
       date-time: yyyy-MM-dd HH:mm:ss
       date: dd/MM/yyyy
   messages:
-    basename: i18n/exception/base-messages, i18n/validation/base-messages, i18n/exception/user-messages, i18n/field/user-fields, classpath:org/springframework/security/messages
+    basename: i18n/exception/base-messages, i18n/validation/base-messages, i18n/exception/user-messages, i18n/field/user-fields
     encoding: UTF-8
     cache-duration: 1
     # 是否运行回退到系统时区

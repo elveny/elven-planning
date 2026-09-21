@@ -1,0 +1,77 @@
+spring:
+  application:
+    name: ${info.name}
+  profiles:
+    active: default
+  config:
+    import:
+      # ！！！ 注意：Nacos的配置必须在此次被导入，不能放在多环境配置中导入。原因如下：
+      # Nacos 配置客户端初始化早于 import 的执行时机，如果将Nacos导入放在特定环境中import，将无法正确获取Nacos配置。
+      - classpath:config/application-nacos.yaml
+
+# 多环境配置
+---
+spring:
+  config:
+    import:
+      - classpath:config/application-common.yaml
+      - classpath:config/application-feign.yaml
+      - classpath:config/application-sentinel.yaml
+      - classpath:config/application-datasource.yaml
+      - classpath:config/application-elven.yaml
+    activate:
+      on-profile: default
+
+---
+spring:
+  config:
+    import:
+      - classpath:config/application-common.yaml
+      - classpath:config/application-feign.yaml
+      - classpath:config/application-sentinel.yaml
+      - classpath:config/application-elven.yaml
+      - nacos:application-common.yaml?group=experiment
+      - nacos:application-datasource.yaml?group=experiment
+      - nacos:application-dev-none.yaml?group=experiment
+    activate:
+      on-profile: dev
+
+---
+spring:
+  config:
+    import:
+      - classpath:config/application-common.yaml
+      - classpath:config/application-feign.yaml
+      - classpath:config/application-sentinel.yaml
+      - nacos:application-common.yaml?group=experiment
+      - nacos:application-datasource.yaml?group=experiment
+      - nacos:application-test-none.yaml?group=experiment
+    activate:
+      on-profile: test
+
+---
+spring:
+  config:
+    import:
+      - classpath:config/application-common.yaml
+      - classpath:config/application-feign.yaml
+      - classpath:config/application-sentinel.yaml
+      - nacos:application-common.yaml?group=experiment
+      - nacos:application-datasource.yaml?group=experiment
+      - nacos:application-uat-none.yaml?group=experiment
+    activate:
+      on-profile: uat
+
+---
+spring:
+  config:
+    import:
+      - classpath:config/application-common.yaml
+      - classpath:config/application-feign.yaml
+      - classpath:config/application-sentinel.yaml
+      - nacos:application-common.yaml?group=experiment
+      - nacos:application-datasource.yaml?group=experiment
+      - nacos:application-prod-none.yaml?group=experiment
+    activate:
+      on-profile: prod
+

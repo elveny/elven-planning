@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    sentinel:
+      eager: true
+      web-context-unify: false
+      transport:
+        dashboard: http://127.0.0.1:8765

@@ -18,11 +18,6 @@ public class ManageAuthorizationManager implements AuthorizationManager<RequestA
     }
 
     @Override
-    public void verify(Supplier<Authentication> authentication, RequestAuthorizationContext object) {
-        AuthorizationManager.super.verify(authentication, object);
-    }
-
-    @Override
     public AuthorizationDecision check(Supplier<Authentication> authentication, RequestAuthorizationContext object) {
         return new AuthorizationDecision(authorizationStrategy.check(authentication.get(), object));
     }

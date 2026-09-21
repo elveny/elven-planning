@@ -7,11 +7,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 import site.elven.planning.user.common.constant.CommonConstants;
 import site.elven.planning.user.common.constant.WebSocketConstants;
@@ -22,6 +24,7 @@ import site.elven.planning.user.web.service.common.redis.RedisService;
 import site.elven.planning.user.web.service.common.token.TokenService;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 @Slf4j
 @Component
@@ -60,6 +63,17 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             HttpServletRequest request,
             HttpServletResponse response,
             FilterChain filterChain) throws ServletException, IOException {
+        // 获取请求路径
+        String servletPath = request.getServletPath();
+
+        // 如果当前请求路径在白名单中，则直接放行
+        ApplicationConfig.Security security = applicationConfig.getSecurity();
+        if (Arrays.stream(security.getWhiteList())
+                .anyMatch(pattern -> new AntPathMatcher().match(pattern, servletPath))) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         // 从请求头中获取认证信息
         String token = extractTokenFromRequest(request);
         if(token == null){
@@ -67,34 +81,53 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        // 从token中解析出username
-        String username = tokenService.getUsernameFromToken(token);
-        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null){
-            // 根据jwt解析出来的username，获取数据库中的用户信息，封装UserDetails对象
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-            if (tokenService.validateToken(token, userDetails)) {
-                String cachePrefix = applicationConfig.getRedis().getCachePrefix();
-                String onlineCacheKey = CommonConstants.REDIS_CACHE_KEY_FORMAT_USER_ONLINE.formatted(cachePrefix, username);
-                Object cacheObject = redisService.get(onlineCacheKey);
-                if(cacheObject == null){
-                    throw new UserOnlineNotExistsException(username);
-                }
-                OnlineUser onlineUser = (OnlineUser) cacheObject;
-                if(token.equals(onlineUser.getToken())){
-                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                            userDetails,
-                            // 用户凭证
-                            null,
-                            userDetails.getAuthorities());
-                    authentication.setDetails(
-                            new WebAuthenticationDetailsSource().buildDetails(request));
-                    // 更新安全上下文的持有用户
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
-                }
-
-            }
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
             filterChain.doFilter(request, response);
+            return;
         }
+
+        // 从 token 中解析出 username
+        String username = tokenService.getUsernameFromToken(token);
+        if(username == null){
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        // 根据username，获取数据库中的用户信息，封装UserDetails对象
+        UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+        if (!tokenService.validateToken(token, userDetails)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        // 从缓存中获取用户信息
+        String cachePrefix = applicationConfig.getRedis().getCachePrefix();
+        String onlineCacheKey = CommonConstants.REDIS_CACHE_KEY_FORMAT_USER_ONLINE.formatted(cachePrefix, username);
+        Object cacheObject = redisService.get(onlineCacheKey);
+        if(cacheObject == null){
+            throw new UserOnlineNotExistsException(username);
+        }
+        OnlineUser onlineUser = (OnlineUser) cacheObject;
+
+        // 校验token 与 缓存中的token是否一致
+        if(!token.equals(onlineUser.getToken())){
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        // 创建认证令牌
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                userDetails,
+                // 用户凭证
+                null,
+                userDetails.getAuthorities());
+        authenticationToken.setDetails(
+                new WebAuthenticationDetailsSource().buildDetails(request));
+        // 更新安全上下文的持有用户
+        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+        filterChain.doFilter(request, response);
+
     }
 
     private String extractTokenFromRequest(HttpServletRequest request){

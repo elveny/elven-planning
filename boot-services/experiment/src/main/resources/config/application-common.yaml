@@ -1,0 +1,90 @@
+info:
+  name: planning-experiment
+  version: 0.0.1
+  formatted-version: (v0.0.1)
+  description: Elven Planning Plan
+
+spring:
+  main:
+    banner-mode: console
+    lazy-initialization: true
+    allow-circular-references: true
+  banner:
+    charset: UTF-8
+    location: banners/banner1.txt
+  jpa:
+    open-in-view: false
+    show-sql: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: always
+    property-naming-strategy: SNAKE_CASE
+  mvc:
+    format:
+      date-time: yyyy-MM-dd HH:mm:ss
+      date: dd/MM/yyyy
+  messages:
+    basename: i18n/exception/base-messages, i18n/validation/base-messages, i18n/exception/experiment-messages
+    encoding: UTF-8
+    cache-duration: 3600
+    # 是否运行回退到系统时区
+    fallback-to-system-locale: false
+  cloud:
+    nacos:
+      config:
+        import-check:
+          enabled: false
+      discovery:
+        register-enabled: false
+
+server:
+  servlet:
+    context-path: /${info.name}
+    session:
+      timeout: 1800s
+  port: 8900
+  server-header: planning-experiment-server-header
+  tomcat:
+    base-dir: tomcat-work
+    max-connections: 16
+    accept-count: 10
+    threads:
+      min-spare: 10
+      max: 20
+  error:
+    include-stacktrace: always
+    include-message: always
+
+management:
+  endpoint:
+    metrics:
+      enabled: true
+    health:
+      show:
+        details: always
+  endpoints:
+    web:
+      base-path: /manage
+      exposure:
+        include: '*'
+
+logging:
+  config: classpath:logging/logback-spring.xml
+  group:
+    project: site.elven.planning.experiment
+    api: site.elven.planning.api.web.client
+    logging: site.elven.aspect.logger
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    io.netty.handler.logging: INFO
+    project: DEBUG
+    api: DEBUG
+    logging: DEBUG
+  file:
+    path: ./logs/${info.name}
+    name: ./logs/${info.name}/${info.name}.log
+    max-history: 1
+    total-size-cap: 16MB
+    max-size: 1MB
