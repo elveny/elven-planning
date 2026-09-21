@@ -38,7 +38,13 @@ spring:
           uri: lb://planning-experiment
           predicates:
             - Path=/api/experiment/**
-            - Token=Authorization
+#            - Token=Authorization
+            - name: Token
+              args:
+                header-name: Authorization
           filters:
             - RewritePath=/api/experiment/(?<segment>.*), /planning-experiment/web/v1/$\{segment}
-            - Timer=true
+#            - Timer=true
+            - name: Timer
+              args:
+                enabled: true
