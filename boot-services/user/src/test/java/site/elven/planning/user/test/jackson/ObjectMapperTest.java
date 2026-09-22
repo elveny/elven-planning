@@ -1,11 +1,12 @@
 package site.elven.planning.user.test.jackson;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.PropertyNamingStrategies;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.util.Map;
 
@@ -15,8 +16,9 @@ public class ObjectMapperTest {
 
     @BeforeAll
     public static void setup(){
-        mapObjectMapper = new ObjectMapper()
-                .setPropertyNamingStrategy(PropertyNamingStrategies.LOWER_CAMEL_CASE);
+        mapObjectMapper = JsonMapper.builder()
+                .propertyNamingStrategy(PropertyNamingStrategies.LOWER_CAMEL_CASE)
+                .build();
     }
 
     @Test
@@ -28,7 +30,7 @@ public class ObjectMapperTest {
     }
 
     @Test
-    public void test2() throws JsonProcessingException {
+    public void test2() throws JacksonException {
         Map<String, Object> source = Map.of("task_id", 1L, "task_name", "test");
         String json = mapObjectMapper.writeValueAsString(source);
         Map<String, Object> target = mapObjectMapper.readValue(json, new TypeReference<>() {

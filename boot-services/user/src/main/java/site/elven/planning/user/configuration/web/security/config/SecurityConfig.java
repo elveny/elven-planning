@@ -51,7 +51,7 @@ public class SecurityConfig {
     private AuthorizationManager<RequestAuthorizationContext> manageAuthorizationManager;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) {
         httpSecurity
                 // 添加JWT过滤器
                 .addFilterBefore(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
@@ -89,10 +89,9 @@ public class SecurityConfig {
      * 认证管理器：基于用户名和密码或使用用户名和密码进行身份验证
      * @param config 认证配置
      * @return 认证管理器
-     * @throws Exception 认证异常
      */
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) {
         return config.getAuthenticationManager();
     }
 
@@ -104,7 +103,7 @@ public class SecurityConfig {
     /**
      * Spring Security 提供的 Spring Data 集成允许在你的查询中引用当前用户。
      * 在查询中包含用户，以支持分页结果，这不仅是有用的，而且是必要的，因为事后过滤结果将无法扩展。
-     * @return
+     * @return SecurityEvaluationContextExtension
      */
     @Bean
     public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
@@ -114,11 +113,9 @@ public class SecurityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider(PasswordEncoder passwordEncoder) {
         // 创建一个用户认证提供者
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(userDetailsService);
         // 是否隐藏”用户不存在异常“（默认为：true-是）
         authProvider.setHideUserNotFoundExceptions(false);
-        // 设置用户相信信息，可以从数据库中读取、或者缓存、或者配置文件
-        authProvider.setUserDetailsService(userDetailsService);
         // 设置加密机制，若想要尝试对用户进行身份验证，我们需要知道使用的是什么编码
         authProvider.setPasswordEncoder(passwordEncoder);
         return authProvider;

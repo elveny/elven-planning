@@ -28,7 +28,7 @@ public class AppTaskController {
     public List<AppTaskRsp> queryTasks(@RequestParam("app_code") String appCode,
                                        @RequestParam("app_secret") String secret) throws InterruptedException {
         List<AppTaskRsp> appTaskRsps = appTaskService.queryTask(appCode, secret);
-        int i = 1/0;
+//        int i = 1/0;
         TimeUnit.SECONDS.sleep(1);
         return appTaskRsps;
     }

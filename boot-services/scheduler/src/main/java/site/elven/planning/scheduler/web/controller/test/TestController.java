@@ -1,14 +1,15 @@
 package site.elven.planning.scheduler.web.controller.test;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import site.elven.planning.scheduler.web.model.request.test.TestReq;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.PropertyNamingStrategies;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.util.Map;
 
@@ -23,8 +24,9 @@ public class TestController {
 
     @PostConstruct
     public void init() {
-        mapObjectMapper = new ObjectMapper()
-                .setPropertyNamingStrategy(PropertyNamingStrategies.LOWER_CAMEL_CASE);
+        mapObjectMapper = JsonMapper.builder()
+                .propertyNamingStrategy(PropertyNamingStrategies.LOWER_CAMEL_CASE)
+                .build();
     }
 
     @RequestMapping("/mapper/map")

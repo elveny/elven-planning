@@ -1,6 +1,7 @@
 package site.elven.planning.boot.base.web.service.base;
 
 import org.springframework.data.domain.*;
+import org.springframework.data.jpa.domain.DeleteSpecification;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.repository.query.FluentQuery;
 import site.elven.planning.boot.base.common.constant.DatabaseDefaultConstants;
@@ -26,10 +27,10 @@ public interface IService<E extends BaseEntity, ID,
      * @return 保存后的实体对象
      */
     default E save(E e) {
-        if(e.getCreatedBy() == null || "".equals(e.getCreatedBy())){
+        if(e.getCreatedBy() == null || e.getCreatedBy().isEmpty()){
             e.setCreatedBy(DatabaseDefaultConstants.CREATED_BY);
         }
-        if(e.getUpdatedBy() == null || "".equals(e.getUpdatedBy())){
+        if(e.getUpdatedBy() == null || e.getUpdatedBy().isEmpty()){
             e.setUpdatedBy(DatabaseDefaultConstants.UPDATED_BY);
         }
         if(e.getCreatedAt() == null){
@@ -349,7 +350,7 @@ public interface IService<E extends BaseEntity, ID,
      * @param spec 条件对象
      * @return 删除的记录总数
      */
-    default long delete(Specification<E> spec) {
+    default long delete(DeleteSpecification<E> spec) {
         return getRepository().delete(spec);
     }
 

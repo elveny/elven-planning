@@ -1,11 +1,11 @@
 package site.elven.planning.plan.web.recorder;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import site.elven.recording.recorder.AbstractRecorder;
 import site.elven.recording.recorder.Record;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
 
 @Slf4j
 @Component
@@ -21,7 +21,7 @@ public class PlanLogRecorder extends AbstractRecorder {
     public void record(Record record) {
         try {
             log.info("recording >>>>>>>> {}", objectMapper.writeValueAsString(record));
-        } catch (JsonProcessingException e) {
+        } catch (JacksonException e) {
             throw new RuntimeException(e);
         }
     }
