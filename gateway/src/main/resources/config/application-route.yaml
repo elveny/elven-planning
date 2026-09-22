@@ -14,6 +14,12 @@ spring:
             - AddRequestHeader=X-Request-From, planning-gateway
             - AddResponseHeader=X-Response-From, planning-gateway
           routes:
+            - id: planning-user
+              uri: lb://planning-user
+              predicates:
+                - Path=/api/user/**
+              filters:
+                - RewritePath=/api/user/(?<segment>.*), /planning-user/web/v1/$\{segment}
             - id: planning-scheduler
               uri: lb://planning-scheduler
               predicates:
@@ -50,3 +56,12 @@ spring:
 #                - name: Timer
 #                  args:
 #                    enabled: true
+              metadata:
+                optionName: "OptionValue"
+                compositeObject:
+                  name: "value"
+                  iAmNumber: 1
+                permissions: [ "ORDER_READ", "ORDER_WRITE" ]
+                auth-required: true
+
+

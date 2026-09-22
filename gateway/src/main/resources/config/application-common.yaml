@@ -60,6 +60,8 @@ management:
     health:
       show:
         details: always
+    gateway:
+      access: read-only
   endpoints:
     web:
       base-path: /manage
