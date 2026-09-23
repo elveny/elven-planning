@@ -27,9 +27,8 @@ spring:
     import:
       - classpath:config/application-common.yaml
       - classpath:config/application-route.yaml
-#      - classpath:config/application-feign.yaml
       - nacos:application-common.yaml?group=gateway
-#      - nacos:application-datasource.yaml?group=gateway
+      - optional:nacos:application-route.yaml?group=gateway
       - nacos:application-dev-none.yaml?group=gateway
     activate:
       on-profile: dev
