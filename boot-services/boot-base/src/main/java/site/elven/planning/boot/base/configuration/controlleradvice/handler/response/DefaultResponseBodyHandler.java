@@ -41,7 +41,7 @@ public class DefaultResponseBodyHandler implements ResponseBodyAdvice<Object> {
         // 2. 判断是否是管理端接口：不处理
         HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
         String path = request.getServletPath();
-        if(path.startsWith("/manage")){
+        if(path.startsWith("/actuator")){
             return false;
         }
 

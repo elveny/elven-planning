@@ -64,7 +64,7 @@ management:
         details: always
   endpoints:
     web:
-      base-path: /manage
+      base-path: /actuator
       exposure:
         include: '*'
 

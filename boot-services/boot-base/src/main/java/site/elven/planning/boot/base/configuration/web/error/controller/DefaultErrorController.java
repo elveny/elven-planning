@@ -23,7 +23,6 @@ public class DefaultErrorController implements ErrorController {
     private final MessageManager messageManager;
     private final ControllerErrorHandlerAdapter controllerErrorHandlerAdapter;
 
-
     public DefaultErrorController(ErrorAttributes errorAttributes, MessageManager messageManager, ControllerErrorHandlerAdapter controllerErrorHandlerAdapter) {
         this.errorAttributes = errorAttributes;
         this.messageManager = messageManager;
@@ -94,6 +93,4 @@ public class DefaultErrorController implements ErrorController {
         }
         return false;
     }
-
-
 }

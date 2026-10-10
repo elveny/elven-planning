@@ -18,6 +18,7 @@ spring:
       - classpath:config/application-feign.yaml
       - classpath:config/application-sentinel.yaml
       - classpath:config/application-datasource.yaml
+      - classpath:config/application-grpc.yaml
       - classpath:config/application-elven.yaml
     activate:
       on-profile: default
@@ -29,10 +30,12 @@ spring:
       - classpath:config/application-common.yaml
       - classpath:config/application-feign.yaml
       - classpath:config/application-sentinel.yaml
+      - classpath:config/application-datasource.yaml
+      - classpath:config/application-grpc.yaml
       - classpath:config/application-elven.yaml
-      - nacos:application-common.yaml?group=experiment
-      - nacos:application-datasource.yaml?group=experiment
-      - nacos:application-dev-none.yaml?group=experiment
+      - optional:nacos:application-common.yaml?group=experiment
+      - optional:nacos:application-datasource.yaml?group=shared
+      - optional:nacos:application-dev-none.yaml?group=experiment
     activate:
       on-profile: dev
 
@@ -43,8 +46,9 @@ spring:
       - classpath:config/application-common.yaml
       - classpath:config/application-feign.yaml
       - classpath:config/application-sentinel.yaml
+      - classpath:config/application-grpc.yaml
       - nacos:application-common.yaml?group=experiment
-      - nacos:application-datasource.yaml?group=experiment
+      - nacos:application-datasource.yaml?group=shared
       - nacos:application-test-none.yaml?group=experiment
     activate:
       on-profile: test
@@ -56,8 +60,9 @@ spring:
       - classpath:config/application-common.yaml
       - classpath:config/application-feign.yaml
       - classpath:config/application-sentinel.yaml
+      - classpath:config/application-grpc.yaml
       - nacos:application-common.yaml?group=experiment
-      - nacos:application-datasource.yaml?group=experiment
+      - nacos:application-datasource.yaml?group=shared
       - nacos:application-uat-none.yaml?group=experiment
     activate:
       on-profile: uat
@@ -69,8 +74,9 @@ spring:
       - classpath:config/application-common.yaml
       - classpath:config/application-feign.yaml
       - classpath:config/application-sentinel.yaml
+      - classpath:config/application-grpc.yaml
       - nacos:application-common.yaml?group=experiment
-      - nacos:application-datasource.yaml?group=experiment
+      - nacos:application-datasource.yaml?group=shared
       - nacos:application-prod-none.yaml?group=experiment
     activate:
       on-profile: prod

@@ -9,6 +9,23 @@ spring:
             read-timeout: 5000
             follow-redirects: true
             decode-404: true
+      httpclient:
+        # 使用 Apache HttpClient 5
+        hc5:
+          enabled: true
+          # 连接池总最大连接数
+          max-connections: 200
+          # 每个路由（目标服务）的最大连接数
+          max-connections-per-route: 50
+          # 连接存活时间（单位：秒），避免空闲连接占用资源
+          time-to-live: 900
+          time-to-live-unit: seconds
+          # 连接超时时间（毫秒）
+          connection-request-timeout: 5000
+          connection-request-timeout-unit: milliseconds
+          # Socket 超时时间（毫秒）
+          socket-timeout: 5000
+          socket-timeout-unit: milliseconds
 
 feign:
   sentinel:

@@ -39,6 +39,4 @@ public class DefaultExceptionHandler extends BaseExceptionHandler{
                 null);
         return ResponseEntity.ok().headers(headers()).body(failure);
     }
-
-
 }

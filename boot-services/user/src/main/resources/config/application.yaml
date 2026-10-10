@@ -31,7 +31,7 @@ spring:
       - classpath:config/application-feign.yaml
       - classpath:config/application-sentinel.yaml
       - nacos:application-common.yaml?group=user
-      - nacos:application-datasource.yaml?group=user
+      - nacos:application-datasource.yaml?group=shared
       - nacos:application-redis.yaml?group=user
       - nacos:application-property.yaml?group=user
       - nacos:application-dev-none.yaml?group=user
@@ -46,7 +46,7 @@ spring:
       - classpath:config/application-feign.yaml
       - classpath:config/application-sentinel.yaml
       - nacos:application-common.yaml?group=user
-      - nacos:application-datasource.yaml?group=user
+      - nacos:application-datasource.yaml?group=shared
       - nacos:application-redis.yaml?group=user
       - nacos:application-property.yaml?group=user
       - nacos:application-test-none.yaml?group=user
@@ -61,7 +61,7 @@ spring:
       - classpath:config/application-feign.yaml
       - classpath:config/application-sentinel.yaml
       - nacos:application-common.yaml?group=user
-      - nacos:application-datasource.yaml?group=user
+      - nacos:application-datasource.yaml?group=shared
       - nacos:application-redis.yaml?group=user
       - nacos:application-property.yaml?group=user
       - nacos:application-uat-none.yaml?group=user
@@ -76,7 +76,7 @@ spring:
       - classpath:config/application-feign.yaml
       - classpath:config/application-sentinel.yaml
       - nacos:application-common.yaml?group=user
-      - nacos:application-datasource.yaml?group=user
+      - nacos:application-datasource.yaml?group=shared
       - nacos:application-redis.yaml?group=user
       - nacos:application-property.yaml?group=user
       - nacos:application-prod-none.yaml?group=user

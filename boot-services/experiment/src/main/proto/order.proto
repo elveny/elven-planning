@@ -1,0 +1,22 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "site.elven.planning.experiment.proto";
+
+service OrderService {
+  rpc CreateOrder (CreateOrderRequest) returns (CreateOrderResponse);
+}
+
+message CreateOrderRequest {
+  string userId = 1;
+  repeated OrderItem items = 2;
+}
+
+message OrderItem {
+  string productId = 1;
+  int32 quantity = 2;
+}
+
+message CreateOrderResponse {
+  string orderId = 1;
+  string status = 2;
+}

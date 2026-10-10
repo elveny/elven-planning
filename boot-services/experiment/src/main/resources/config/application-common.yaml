@@ -65,9 +65,12 @@ management:
         details: always
   endpoints:
     web:
-      base-path: /manage
+      base-path: /actuator
       exposure:
         include: '*'
+  observations:
+    annotations:
+      enabled: true
 
 logging:
   config: classpath:logging/logback-spring.xml

@@ -53,6 +53,12 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+        <!-- micrometer-prometheus -->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
+
         <!-- aop -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -203,6 +209,31 @@
                     <execution>
                         <goals>
                             <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- 使用 ascopes 插件生成 Protobuf 和 gRPC 代码 -->
+            <plugin>
+                <groupId>io.github.ascopes</groupId>
+                <artifactId>protobuf-maven-plugin</artifactId>
+                <configuration>
+                    <protoc kind="binary-maven">
+                        <version>4.35.1</version>
+                    </protoc>
+                    <plugins>
+                        <plugin kind="binary-maven">
+                            <groupId>io.grpc</groupId>
+                            <artifactId>protoc-gen-grpc-java</artifactId>
+                            <version>1.83.1</version>  <!-- 你的 gRPC 版本 -->
+                        </plugin>
+                    </plugins>
+                    <registerAsCompilationRoot>true</registerAsCompilationRoot>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>   <!-- 绑定到默认阶段 generate-sources -->
                         </goals>
                     </execution>
                 </executions>

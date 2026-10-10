@@ -31,7 +31,7 @@ spring:
       - classpath:config/application-sentinel.yaml
       - classpath:config/application-quartz.yaml
       - nacos:application-common.yaml?group=scheduler
-      - nacos:application-datasource.yaml?group=scheduler
+      - nacos:application-datasource.yaml?group=shared
       - nacos:application-dev-none.yaml?group=scheduler
     activate:
       on-profile: dev
@@ -45,7 +45,7 @@ spring:
       - classpath:config/application-sentinel.yaml
       - classpath:config/application-quartz.yaml
       - nacos:application-common.yaml?group=scheduler
-      - nacos:application-datasource.yaml?group=scheduler
+      - nacos:application-datasource.yaml?group=shared
       - nacos:application-test-none.yaml?group=scheduler
     activate:
       on-profile: test
@@ -59,7 +59,7 @@ spring:
       - classpath:config/application-sentinel.yaml
       - classpath:config/application-quartz.yaml
       - nacos:application-common.yaml?group=scheduler
-      - nacos:application-datasource.yaml?group=scheduler
+      - nacos:application-datasource.yaml?group=shared
       - nacos:application-uat-none.yaml?group=scheduler
     activate:
       on-profile: uat
@@ -73,7 +73,7 @@ spring:
       - classpath:config/application-sentinel.yaml
       - classpath:config/application-quartz.yaml
       - nacos:application-common.yaml?group=scheduler
-      - nacos:application-datasource.yaml?group=scheduler
+      - nacos:application-datasource.yaml?group=shared
       - nacos:application-prod-none.yaml?group=scheduler
     activate:
       on-profile: prod

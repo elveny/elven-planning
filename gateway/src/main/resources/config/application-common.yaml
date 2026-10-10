@@ -64,7 +64,7 @@ management:
       access: read-only
   endpoints:
     web:
-      base-path: /manage
+      base-path: /actuator
       exposure:
         include: '*'
 

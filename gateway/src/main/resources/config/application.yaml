@@ -41,7 +41,7 @@ spring:
       - classpath:config/application-route.yaml
 #      - classpath:config/application-feign.yaml
       - nacos:application-common.yaml?group=gateway
-#      - nacos:application-datasource.yaml?group=gateway
+#      - nacos:application-datasource.yaml?group=shared
       - nacos:application-test-none.yaml?group=gateway
     activate:
       on-profile: test
@@ -54,7 +54,7 @@ spring:
       - classpath:config/application-route.yaml
 #      - classpath:config/application-feign.yaml
       - nacos:application-common.yaml?group=gateway
-#      - nacos:application-datasource.yaml?group=gateway
+#      - nacos:application-datasource.yaml?group=shared
       - nacos:application-uat-none.yaml?group=gateway
     activate:
       on-profile: uat
@@ -67,7 +67,7 @@ spring:
       - classpath:config/application-route.yaml
 #      - classpath:config/application-feign.yaml
       - nacos:application-common.yaml?group=gateway
-#      - nacos:application-datasource.yaml?group=gateway
+#      - nacos:application-datasource.yaml?group=shared
       - nacos:application-prod-none.yaml?group=gateway
     activate:
       on-profile: prod

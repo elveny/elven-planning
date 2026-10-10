@@ -31,7 +31,7 @@ spring:
       - classpath:config/application-sentinel.yaml
       - classpath:config/application-elven.yaml
       - nacos:application-common.yaml?group=plan
-      - nacos:application-datasource.yaml?group=plan
+      - nacos:application-datasource.yaml?group=shared
       - nacos:application-dev-none.yaml?group=plan
     activate:
       on-profile: dev
@@ -44,7 +44,7 @@ spring:
       - classpath:config/application-feign.yaml
       - classpath:config/application-sentinel.yaml
       - nacos:application-common.yaml?group=plan
-      - nacos:application-datasource.yaml?group=plan
+      - nacos:application-datasource.yaml?group=shared
       - nacos:application-test-none.yaml?group=plan
     activate:
       on-profile: test
@@ -57,7 +57,7 @@ spring:
       - classpath:config/application-feign.yaml
       - classpath:config/application-sentinel.yaml
       - nacos:application-common.yaml?group=plan
-      - nacos:application-datasource.yaml?group=plan
+      - nacos:application-datasource.yaml?group=shared
       - nacos:application-uat-none.yaml?group=plan
     activate:
       on-profile: uat
@@ -70,7 +70,7 @@ spring:
       - classpath:config/application-feign.yaml
       - classpath:config/application-sentinel.yaml
       - nacos:application-common.yaml?group=plan
-      - nacos:application-datasource.yaml?group=plan
+      - nacos:application-datasource.yaml?group=shared
       - nacos:application-prod-none.yaml?group=plan
     activate:
       on-profile: prod

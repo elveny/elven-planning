@@ -13,7 +13,7 @@ application:
         - /web/v1/test/**
         - /ws/**
       manage-list:
-        - /manage/**
+        - /actuator/**
         - /admin/**
     thread:
       pool:
