@@ -16,6 +16,7 @@ spring:
     import:
       - classpath:config/application-common.yaml
       - classpath:config/application-route.yaml
+      - classpath:config/application-sentinel.yaml
 #      - classpath:config/application-feign.yaml
 #      - classpath:config/application-datasource.yaml
     activate:
@@ -27,6 +28,7 @@ spring:
     import:
       - classpath:config/application-common.yaml
       - classpath:config/application-route.yaml
+      - classpath:config/application-sentinel.yaml
       - nacos:application-common.yaml?group=gateway
       - optional:nacos:application-route.yaml?group=gateway
       - nacos:application-dev-none.yaml?group=gateway
@@ -39,6 +41,7 @@ spring:
     import:
       - classpath:config/application-common.yaml
       - classpath:config/application-route.yaml
+      - classpath:config/application-sentinel.yaml
 #      - classpath:config/application-feign.yaml
       - nacos:application-common.yaml?group=gateway
 #      - nacos:application-datasource.yaml?group=shared
@@ -52,6 +55,7 @@ spring:
     import:
       - classpath:config/application-common.yaml
       - classpath:config/application-route.yaml
+      - classpath:config/application-sentinel.yaml
 #      - classpath:config/application-feign.yaml
       - nacos:application-common.yaml?group=gateway
 #      - nacos:application-datasource.yaml?group=shared
@@ -65,6 +69,7 @@ spring:
     import:
       - classpath:config/application-common.yaml
       - classpath:config/application-route.yaml
+      - classpath:config/application-sentinel.yaml
 #      - classpath:config/application-feign.yaml
       - nacos:application-common.yaml?group=gateway
 #      - nacos:application-datasource.yaml?group=shared

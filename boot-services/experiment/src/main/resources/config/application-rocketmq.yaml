@@ -1,0 +1,17 @@
+rocketmq:
+  name-server: 192.168.135.129:9876   # 你的 NameServer 地址
+  producer:
+    group: springboot-producer-group   # 生产者组，全局唯一
+    send-message-timeout: 3000
+    retry-times-when-send-failed: 2
+    access-key: app-user
+    secret-key: app-passwd
+  consumer:
+    access-key: app-user
+    secret-key: app-passwd
+  admin:
+    namesrv-addr: 192.168.135.129:9876 # 与你的 Broker 注册地址一致
+    admin-group: springboot-admin-group # 管理端组名，需全局唯一
+    timeout-millis: 5000
+    accessKey: rocketmq-admin
+    secretKey: rocketmq-secret

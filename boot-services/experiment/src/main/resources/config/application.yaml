@@ -19,6 +19,7 @@ spring:
       - classpath:config/application-sentinel.yaml
       - classpath:config/application-datasource.yaml
       - classpath:config/application-grpc.yaml
+      - classpath:config/application-rocketmq.yaml
       - classpath:config/application-elven.yaml
     activate:
       on-profile: default
@@ -32,6 +33,7 @@ spring:
       - classpath:config/application-sentinel.yaml
       - classpath:config/application-datasource.yaml
       - classpath:config/application-grpc.yaml
+      - classpath:config/application-rocketmq.yaml
       - classpath:config/application-elven.yaml
       - optional:nacos:application-common.yaml?group=experiment
       - optional:nacos:application-datasource.yaml?group=shared
@@ -46,6 +48,7 @@ spring:
       - classpath:config/application-common.yaml
       - classpath:config/application-feign.yaml
       - classpath:config/application-sentinel.yaml
+      - classpath:config/application-rocketmq.yaml
       - classpath:config/application-grpc.yaml
       - nacos:application-common.yaml?group=experiment
       - nacos:application-datasource.yaml?group=shared
@@ -60,6 +63,7 @@ spring:
       - classpath:config/application-common.yaml
       - classpath:config/application-feign.yaml
       - classpath:config/application-sentinel.yaml
+      - classpath:config/application-rocketmq.yaml
       - classpath:config/application-grpc.yaml
       - nacos:application-common.yaml?group=experiment
       - nacos:application-datasource.yaml?group=shared
@@ -74,6 +78,7 @@ spring:
       - classpath:config/application-common.yaml
       - classpath:config/application-feign.yaml
       - classpath:config/application-sentinel.yaml
+      - classpath:config/application-rocketmq.yaml
       - classpath:config/application-grpc.yaml
       - nacos:application-common.yaml?group=experiment
       - nacos:application-datasource.yaml?group=shared
